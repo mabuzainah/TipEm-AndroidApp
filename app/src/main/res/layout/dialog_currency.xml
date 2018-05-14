@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <Switch
+                android:id="@+id/CAD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:splitTrack="false"
+                android:text="CAD"
+                tools:checked="true" />
+
+            <Switch
+                android:id="@+id/USD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="USD" />
+
+            <Switch
+                android:id="@+id/Pound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pound" />
+
+            <Switch
+                android:id="@+id/Euro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Euro" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

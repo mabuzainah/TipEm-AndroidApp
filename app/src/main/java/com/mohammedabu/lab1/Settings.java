@@ -62,7 +62,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             case R.id.currencyButton:
 //                TODO: Implement the popup dialogue when pressing the currency button to showcase the different supported currencies
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_login, null);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_currency, null);
                 final EditText mEmail = (EditText) mView.findViewById(R.id.etEmail);
                 final EditText mPassword = (EditText) mView.findViewById(R.id.etPassword);
                 Button mLogin = (Button) mView.findViewById(R.id.btnLogin);
