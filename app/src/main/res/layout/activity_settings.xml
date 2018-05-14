@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Check how much to pay for a tip"
+                        android:text="Change Currency used"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -110,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Check previous amounts paid in tips"
+                        android:text="Adjust Default Tip %"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>

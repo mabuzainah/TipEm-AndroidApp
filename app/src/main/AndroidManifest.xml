@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logotipem"
+        android:icon="@drawable/logo"
         android:label="Tip&apos;Em"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -19,7 +19,8 @@
         <activity android:name=".CalculateTip" />
         <activity android:name=".PreviousTip" />
         <activity android:name=".Settings" />
-        <activity android:name=".Suggested"></activity>
+        <activity android:name=".Suggested" />
+
     </application>
 
 </manifest>
