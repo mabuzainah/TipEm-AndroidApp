@@ -7,52 +7,6 @@
     tools:context=".Settings">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/backButton"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_arrow_back_black_24dp"
-                android:textAlignment="viewEnd"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="0dp" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="148dp"
-                android:layout_weight="1"
-                android:text="Settings"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="4dp" />
-        </android.support.constraint.ConstraintLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,9 +17,37 @@
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="148dp"
+            android:layout_marginStart="148dp"
+            android:layout_weight="1"
+            android:text="Settings"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/lightgray" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"

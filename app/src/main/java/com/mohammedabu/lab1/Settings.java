@@ -27,6 +27,7 @@ import java.util.List;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener {
 
+
         Button confirm;
         Switch useDefault;
         boolean toggle;
@@ -77,7 +78,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     //  TODO: Finish implementing the changes in the seekbar and reflecting it with the percentage text, and saving that state in the application
                 case R.id.tipPercentageButton:
                     showDialog();
-
                     break;
 
                 default:
