@@ -79,7 +79,7 @@
                         android:background="@color/lightgray" />
 
                     <RatingBar
-                        android:id="@+id/ratingBar"
+                        android:id="@+id/ratingBarPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rate_me"
@@ -117,7 +117,7 @@
                         android:background="@color/lightgray" />
 
                     <RatingBar
-                        android:id="@+id/ratingBar"
+                        android:id="@+id/ratingBarStaff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rate_me"
@@ -155,7 +155,7 @@
                         android:background="@color/lightgray" />
 
                     <RatingBar
-                        android:id="@+id/ratingBar"
+                        android:id="@+id/ratingBarFood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rate_me"
@@ -193,7 +193,7 @@
                         android:background="@color/lightgray" />
 
                     <RatingBar
-                        android:id="@+id/ratingBar"
+                        android:id="@+id/ratingBarMood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rate_me"
@@ -204,7 +204,7 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/saveButton"
+                android:id="@+id/calculateRatingButton"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonstyle"

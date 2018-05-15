@@ -17,7 +17,7 @@ public class CurrencyChoiceDialog extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstance){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Choose the default currency").setSingleChoiceItems(currencies, -1, new DialogInterface.OnClickListener() {
+        builder.setTitle("Choose the default currency").setSingleChoiceItems(currencies, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch (i){
