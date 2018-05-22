@@ -29,7 +29,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -45,16 +45,17 @@
             android:layout_weight="1">
 
             <SeekBar
-                android:id="@+id/your_dialog_seekbar"
+                android:id="@+id/seekBar1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true">
+                android:layout_alignParentTop="true"
+                android:max="25">
 
             </SeekBar>
 
             <Button
-                android:id="@+id/your_dialog_button"
+                android:id="@+id/submitButton"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -63,7 +64,9 @@
                 android:background="@drawable/buttonstyle"
                 android:text="Set"
                 android:textAlignment="center"
-                android:textColor="#fff"></Button>
+                android:textColor="#fff">
+
+            </Button>
 
         </RelativeLayout>
 

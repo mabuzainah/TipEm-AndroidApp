@@ -1,28 +1,64 @@
-//package com.mohammedabu.lab1;
-//
-//import android.app.Dialog;
-//import android.os.Bundle;
-//import android.support.v4.app.DialogFragment;
-//import android.support.v7.app.AlertDialog;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.widget.TextView;
-//
-//public class TipPercentDialog extends DialogFragment {
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        // Use the Builder class for convenient dialog construction
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//
-//        LayoutInflater inflater = getActivity().getLayoutInflater();
-//
-//        // Inflate and set the layout for the dialog
-//        // Pass null as the parent view because its going in the dialog layout
-//        View content =  inflater.inflate(R.layout.dialog_tip_result, null);
-//        builder.setView(content);
-//
-//        TextView textView = (TextView) getActivity().findViewById(R.id.info);
-//        textView.setText(Html.fromHtml("<h1>Text has been correctly set</h1>"));
-//
-//    }
-//}
-//
+package com.mohammedabu.lab1;
+
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+
+public class TipPercentDialog extends DialogFragment {
+    public static TipPercentDialog newInstance(String title) {
+        TipPercentDialog alertFragment = new TipPercentDialog();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        alertFragment.setArguments(args);
+        return alertFragment;
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        String title = getArguments().getString("title");
+
+        final Dialog dialog = new Dialog(getActivity());
+
+        dialog.setTitle(title);
+        dialog.setContentView(R.layout.dialog_tippercentage);
+
+        SeekBar seekBar = dialog.findViewById(R.id.seekBar1);
+        final EditText edit = dialog.findViewById(R.id.editText1);
+        Button submit = dialog.findViewById(R.id.submitButton);
+
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                edit.setText("" + progress);
+            }
+        });
+
+        submit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        return dialog;
+    }
+
+}

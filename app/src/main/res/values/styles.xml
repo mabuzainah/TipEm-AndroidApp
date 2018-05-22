@@ -8,7 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
+    </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#98d031</item>
+        <item name="colorControlActivated">#ff5722</item>
+        <item name="colorControlHighlight">#739222</item>
     </style>
 
 </resources>

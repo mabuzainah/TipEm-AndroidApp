@@ -1,11 +1,19 @@
 package com.mohammedabu.lab1;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.calcTip:
                 i= new Intent(this,CalculateTip.class);
                 startActivity(i);
+                //showDialogView(view);
                 break;
 
             case R.id.prevTip:
@@ -58,5 +67,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+//    public void showDialogView(View view){
+//        Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.test);
+//        List<PagerModel> pagerArr = new ArrayList<>();
+//        pagerArr.add(new PagerModel("1","Pager Item #1"));
+//        pagerArr.add(new PagerModel("2","Pager Item #2"));
+//        pagerArr.add(new PagerModel("3","Pager Item #3"));
+//
+//        PagerAdapterProject adapter = new PagerAdapterProject(this, pagerArr);
+//        AutoScrollViewPager pager = dialog.findViewById(R.id.pager);
+//        pager.setAdapter(adapter);
+//        CircleIndicator pageIndicator = dialog.findViewById(R.id.indicator);
+//        pageIndicator.setViewPager(pager);
+//        pageIndicator.setViewPager(pager);
+//
+//        dialog.show();
+//    }
+
 
 }

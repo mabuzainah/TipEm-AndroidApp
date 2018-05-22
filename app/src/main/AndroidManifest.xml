@@ -20,7 +20,7 @@
         <activity android:name=".PreviousTip" />
         <activity android:name=".Settings" />
         <activity android:name=".Suggested" />
-
+        <activity android:name=".Payment"></activity>
     </application>
 
 </manifest>

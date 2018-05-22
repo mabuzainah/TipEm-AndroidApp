@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         boolean toggle;
         private CardView currency;
         private CardView tipPercentage;
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     i = new Intent(this, MainActivity.class);
                     startActivity(i);
                     break;
-// TODO: Save the state once the OK button is clicked for the currency.
                 case R.id.currencyButton:
                     setCurrency(view);
                     break;
@@ -90,14 +91,27 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             currencyChoiceDialog.show(getSupportFragmentManager(),"CurrencySelection");
         }
 
+
         public void showDialog(){
             final Dialog yourDialog = new Dialog(this);
             LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.dialog_tippercentage, (ViewGroup)findViewById(R.id.your_dialog_root_element));
-            Button yourDialogButton = (Button)layout.findViewById(R.id.your_dialog_button);
-            SeekBar yourDialogSeekBar = (SeekBar)layout.findViewById(R.id.your_dialog_seekbar);
+            Button yourDialogButton = layout.findViewById(R.id.your_dialog_button);
+            SeekBar yourDialogSeekBar = layout.findViewById(R.id.seekBar1);
+            final TextView percentage = findViewById(R.id.editText1);
             yourDialog.setContentView(layout);
             yourDialog.show();
+            yourDialogSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+            {
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+                {
+                   // percentage.setText(Integer.toString(progress + 10));
+                }
+
+                public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                public void onStopTrackingTouch(SeekBar seekBar) {}
+            });
             yourDialogButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -105,90 +119,4 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                 }
             });
         }
-
-//    public void ShowDialog(){
-//        final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
-//        final SeekBar seek = new SeekBar(this);
-//        seek.setMax(60);
-//        seek.setKeyProgressIncrement(1);
-//
-//        popDialog.setIcon(android.R.drawable.btn_star_big_on);
-//        popDialog.setTitle("Please adjust to the desired Tip % needed ");
-//        popDialog.setView(seek);
-//
-//
-//        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//
-//
-//
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-//
-//
-//                txtView.setText("Value of : " + progress);
-//            }
-//
-//
-//
-//            public void onStartTrackingTouch(SeekBar arg0) {
-//                //do something
-//
-//                // TODO Auto-generated method stub
-//            }
-//
-//
-//
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//                //do something
-//
-//            }
-//        });
-//
-//
-//        // Button OK
-//        popDialog.setPositiveButton("OK",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//        popDialog.create();
-//        popDialog.show();
-//    }
-
-
-//    private void showRadioButtonDialog() {
-//
-//        // custom dialog
-//        final Dialog dialog = new Dialog(getApplicationContext());
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.dialog_currency);
-//        List<String> stringList=new ArrayList<>();  // here is list
-//        for(int i=0;i<5;i++) {
-//            stringList.add("RadioButton " + (i + 1));
-//        }
-//        RadioGroup rg = dialog.findViewById(R.id.currencySelection);
-//
-//        for(int i=0;i<stringList.size();i++){
-//            RadioButton rb=new RadioButton(getApplicationContext()); // dynamically creating RadioButton and adding to RadioGroup.
-//            rb.setText(stringList.get(i));
-//            rg.addView(rb);
-//        }
-//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                int childCount = group.getChildCount();
-//                for (int x = 0; x < childCount; x++) {
-//                    RadioButton btn = (RadioButton) group.getChildAt(x);
-//                    if (btn.getId() == checkedId) {
-//                        Log.e("selected RadioButton->",btn.getText().toString());
-//
-//                    }
-//                }
-//            }
-//        });
-//
-//        dialog.show();
-//
-//    }
 }
