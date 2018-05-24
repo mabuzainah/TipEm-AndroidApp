@@ -22,7 +22,6 @@ public class CalculateTip extends AppCompatActivity {
     EditText tipText;
     EditText peopleText;
     Button submit;
-    String bill,tip,people2;
 
 
     float tipPercent;
@@ -47,73 +46,58 @@ public class CalculateTip extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activate();
+                Intent i = new Intent(CalculateTip.this,Payment.class);
+
+                billAmount = Float.parseFloat(billText.getText().toString()) ;
+                tipPercent = Float.parseFloat(tipText.getText().toString()) ;
+                tipAmount = billAmount * tipPercent ;
+                totalBill = billAmount + tipAmount;
+                people = Float.parseFloat(peopleText.getText().toString()) ;
+                tipPerPerson = tipAmount / people ;
+                paymentPerPerson = tipPerPerson + (billAmount / people);
+
+
+                i.putExtra ( "BillAmount", billAmount);
+                i.putExtra ( "TipAmount", tipAmount );
+                i.putExtra ( "TotalBill", totalBill );
+                i.putExtra ( "TipPerPerson", tipPerPerson);
+                i.putExtra ( "EachPerson", paymentPerPerson);
+                i.putExtra("People",people);
+                startActivity(i);
+
+
+
             }
         });
     }
 
-    private void activate() {
-        initialise();
-        if (!validate()){
-            Toast.makeText(this,"Unable to send info, form incomplete", Toast.LENGTH_LONG).show();
-        }else {
-            passingToActvity();
-        }
+    //TODO: Finish Implementing the verification for the form.
+
+    private void setupFloatingLabelError() {
+        final TextInputLayout floatingBillLabel = findViewById(R.id.billAmount);
+        floatingBillLabel.getEditText().addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int count, int after) {
+                if (text.length()== 0)
+                    floatingBillLabel.setError("Input your bill amount");
+                    floatingBillLabel.setErrorEnabled(true);
+                }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+        });
     }
 
-
-    private void passingToActvity() {
-        Intent i = new Intent(CalculateTip.this,Payment.class);
-
-        billAmount = Float.parseFloat(billText.getText().toString()) ;
-        tipPercent = Float.parseFloat(tipText.getText().toString()) ;
-        tipAmount = billAmount * tipPercent ;
-        totalBill = billAmount + tipAmount;
-        people = Float.parseFloat(peopleText.getText().toString()) ;
-        tipPerPerson = tipAmount / people ;
-        paymentPerPerson = tipPerPerson + (billAmount / people);
-
-        i.putExtra ( "BillAmount", billAmount);
-        i.putExtra ( "TipAmount", tipAmount );
-        i.putExtra ( "TotalBill", totalBill );
-        i.putExtra ( "TipPerPerson", tipPerPerson);
-        i.putExtra ( "EachPerson", paymentPerPerson);
-        i.putExtra("People",people);
-        startActivity(i);
+    public int calculate(){
+    return 0;
     }
-
-    public void initialise(){
-        bill = billText.getText().toString().trim();
-        tip = tipText.getText().toString().trim();
-        people2 = peopleText.getText().toString().trim();
-    }
-    public boolean validate(){
-        boolean valid = true;
-        if (bill.isEmpty()||!isPositive(billText)){
-            billText.setError("Please enter your bill amount, it has to be positive amount!");
-            valid = false;
-        }
-        if (tip.isEmpty()||!isPositive(tipText)){
-            tipText.setError("Please enter a POSITIVE number");
-            valid = false;
-        }
-        if (people2.isEmpty()){
-            billText.setError("Please enter a number that is greater than 0");
-            valid = false;
-        }
-        return valid;
-    }
-
-    private boolean isPositive(EditText et)
-    {
-        try
-        {
-            return Integer.parseInt(et.getText().toString()) > 0;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-    }
-    
 }
