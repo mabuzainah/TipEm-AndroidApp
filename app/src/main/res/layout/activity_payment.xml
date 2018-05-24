@@ -10,32 +10,23 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="324dp"
+        android:layout_height="257dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/card" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="403dp"
-        android:layout_height="360dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="325dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="257dp"
+        android:layout_marginBottom="84dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -43,14 +34,14 @@
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.087">
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textView13"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your Total to pay is:"
             android:textAlignment="center"
@@ -67,7 +58,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <TextView
@@ -93,8 +84,8 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toStartOf="@+id/payTip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
                 android:text="Tip/Person:"
                 android:textSize="18sp" />
 
@@ -102,8 +93,8 @@
                 android:id="@+id/payTip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/billAmtText"
                 android:layout_weight="1"
                 android:text="225"
                 android:textSize="18sp" />
@@ -133,8 +124,9 @@
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textView22"
-                android:layout_alignTop="@+id/textView18"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="49dp"
                 android:layout_weight="1"
                 android:text="Bill total:"
                 android:textColor="@android:color/black"
@@ -144,8 +136,9 @@
                 android:id="@+id/billTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/payTip"
-                android:layout_alignTop="@+id/textView18"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="-49dp"
+                android:layout_toEndOf="@+id/textView21"
                 android:text="100"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -158,7 +151,7 @@
         android:id="@+id/submit2"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/buttonstyle"

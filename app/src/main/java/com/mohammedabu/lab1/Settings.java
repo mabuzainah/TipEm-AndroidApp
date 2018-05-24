@@ -1,10 +1,13 @@
 package com.mohammedabu.lab1;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,8 +33,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
 
         Button confirm;
-        Switch useDefault;
-        boolean toggle;
+        public int value ;
         private CardView currency;
         private CardView tipPercentage;
 
@@ -41,7 +43,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_settings);
             confirm = findViewById(R.id.saveButton);
-            useDefault = findViewById(R.id.switch1);
+            //useDefault = findViewById(R.id.switch1);
             currency = findViewById(R.id.currencyButton);
             tipPercentage = findViewById(R.id.tipPercentageButton);
 
@@ -50,21 +52,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             tipPercentage.setOnClickListener(this);
 
             final SharedPreferences sharedPreferences = getSharedPreferences("Press",0);
-            toggle = sharedPreferences.getBoolean("Switch",false);
 
-            useDefault.setChecked(toggle);
-            useDefault.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    toggle = !toggle;
-                    useDefault.setChecked(toggle);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("Switch", toggle);
-                    editor.apply();
-                }
-            });
         }
-
+//TODO: update the tip % in the calculate Tip class with the tip selected by users in settings.
         @Override
         public void onClick (View view){
             Intent i;
@@ -76,7 +66,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                 case R.id.currencyButton:
                     setCurrency(view);
                     break;
-                    //  TODO: Finish implementing the changes in the seekbar and reflecting it with the percentage text, and saving that state in the application
+                    //  TODO:  Saving that state in the application
                 case R.id.tipPercentageButton:
                     showDialog();
                     break;
@@ -93,30 +83,43 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
 
         public void showDialog(){
-            final Dialog yourDialog = new Dialog(this);
-            LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.dialog_tippercentage, (ViewGroup)findViewById(R.id.your_dialog_root_element));
-            Button yourDialogButton = layout.findViewById(R.id.your_dialog_button);
-            SeekBar yourDialogSeekBar = layout.findViewById(R.id.seekBar1);
-            final TextView percentage = findViewById(R.id.editText1);
-            yourDialog.setContentView(layout);
-            yourDialog.show();
-            yourDialogSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-            {
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-                {
-                   // percentage.setText(Integer.toString(progress + 10));
-                }
 
-                public void onStartTrackingTouch(SeekBar seekBar) {}
+            final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+            final SeekBar seek = new SeekBar(this);
+            seek.setMax(100);
+            seek.setMin(10);
+            seek.incrementProgressBy(5);
 
-                public void onStopTrackingTouch(SeekBar seekBar) {}
-            });
-            yourDialogButton.setOnClickListener(new View.OnClickListener() {
+            popDialog.setTitle("Tip Percentage");
+            popDialog.setMessage("10%");
+            popDialog.setView(seek);
+            popDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
                 @Override
-                public void onClick(View view) {
-                    yourDialog.dismiss();
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getApplicationContext(), "Tip % has been updated to: "+ seek.getProgress(), Toast.LENGTH_SHORT).show();
                 }
             });
+            final AlertDialog dialog = popDialog.create();
+
+
+            seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                public int progress ;
+
+                public void onProgressChanged(SeekBar seekBar, int progressV, boolean fromUser) {
+                    dialog.setMessage(progressV+" %");
+                }
+
+                public void onStartTrackingTouch(SeekBar arg0) {
+                }
+
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    dialog.setMessage(seekBar.getProgress() +" %");
+                    progress = seekBar.getProgress();
+
+                }
+            });
+            dialog.show();
         }
+
 }

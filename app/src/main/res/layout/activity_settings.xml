@@ -18,8 +18,10 @@
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344">
 
 
         <TextView
@@ -149,40 +151,34 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Use as default tipping settings"
-                tools:checked="true" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonstyle"
-            android:text="Confirm"
-            android:textColor="#FFF" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="1" />
     </LinearLayout>
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="472dp"
+        android:background="@drawable/buttonstyle"
+        android:text="Confirm"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

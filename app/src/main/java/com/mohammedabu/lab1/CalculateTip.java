@@ -23,9 +23,14 @@ public class CalculateTip extends AppCompatActivity {
     EditText peopleText;
     Button submit;
 
+    String bill1;
+    String tip1;
+    String people1;
+
 
     float tipPercent;
 
+    boolean validForm = true;
 
     float billAmount;
     float tipAmount;
@@ -34,70 +39,140 @@ public class CalculateTip extends AppCompatActivity {
     float paymentPerPerson;
     float people;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_tip);
         billText = findViewById(R.id.billAmount);
+        billText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String working = s.toString();
+                boolean valid = true;
+                if (working.isEmpty()){
+                    valid = false;
+                } else {valid = true;}
+                if (!valid){
+                    billText.setError("Please input an amount that's reasonable");
+                    validForm = false;
+                } else {
+                    billText.setError(null);
+                    validForm = true;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         tipText = findViewById(R.id.tipAmount);
+        tipText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String working = s.toString();
+                boolean valid = true;
+                if (working.isEmpty()){
+                    valid = false;
+                } else if (Integer.parseInt(working) >100 || Integer.parseInt(working) < 0 ) {
+                        valid = false;
+                }
+                if (!valid){
+                    tipText.setError("Please input a percentage between 0 --> 100");
+                    validForm = false;
+                } else {
+                    tipText.setError(null);
+                    validForm = true;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         peopleText = findViewById(R.id.people);
+        peopleText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String working = s.toString();
+                boolean valid = true;
+                if (working.isEmpty()){
+                    valid = false;
+                } else if (Integer.parseInt(working) >9 || Integer.parseInt(working) < 1 ) {
+                    valid = false;
+                }
+                if (!valid){
+                    peopleText.setError("Please input a number between 1 --> 9");
+                    validForm = false;
+                } else {
+                    peopleText.setError(null);
+                    validForm = true;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         submit = findViewById(R.id.submit);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(CalculateTip.this,Payment.class);
-
-                billAmount = Float.parseFloat(billText.getText().toString()) ;
-                tipPercent = Float.parseFloat(tipText.getText().toString()) ;
-                tipAmount = billAmount * tipPercent ;
-                totalBill = billAmount + tipAmount;
-                people = Float.parseFloat(peopleText.getText().toString()) ;
-                tipPerPerson = tipAmount / people ;
-                paymentPerPerson = tipPerPerson + (billAmount / people);
-
-
-                i.putExtra ( "BillAmount", billAmount);
-                i.putExtra ( "TipAmount", tipAmount );
-                i.putExtra ( "TotalBill", totalBill );
-                i.putExtra ( "TipPerPerson", tipPerPerson);
-                i.putExtra ( "EachPerson", paymentPerPerson);
-                i.putExtra("People",people);
-                startActivity(i);
-
-
-
-            }
-        });
-    }
-
-    //TODO: Finish Implementing the verification for the form.
-
-    private void setupFloatingLabelError() {
-        final TextInputLayout floatingBillLabel = findViewById(R.id.billAmount);
-        floatingBillLabel.getEditText().addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence text, int start, int count, int after) {
-                if (text.length()== 0)
-                    floatingBillLabel.setError("Input your bill amount");
-                    floatingBillLabel.setErrorEnabled(true);
+                initialise();
+                if (!validForm){
+                    Toast.makeText(CalculateTip.this,"Missing or invalid information", Toast.LENGTH_SHORT).show();
+                }else{
+                navigateToCalculate();
                 }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
             }
-
         });
     }
 
-    public int calculate(){
-    return 0;
+    public void navigateToCalculate(){
+        Intent i = new Intent(CalculateTip.this,Payment.class);
+
+        billAmount = Float.parseFloat(bill1) ;
+        tipPercent = Float.parseFloat(tip1) ;
+        tipAmount = billAmount * tipPercent ;
+        totalBill = billAmount + tipAmount;
+        people = Float.parseFloat(people1) ;
+        tipPerPerson = tipAmount / people ;
+        paymentPerPerson = tipPerPerson + (billAmount / people);
+
+
+        i.putExtra ( "BillAmount", billAmount);
+        i.putExtra ( "TipAmount", tipAmount );
+        i.putExtra ( "TotalBill", totalBill );
+        i.putExtra ( "TipPerPerson", tipPerPerson);
+        i.putExtra ( "EachPerson", paymentPerPerson);
+        i.putExtra("People",people);
+        startActivity(i);
     }
+
+    private void initialise() {
+        bill1 = billText.getText().toString() ;
+        tip1 = tipText.getText().toString() ;
+        people1 = peopleText.getText().toString() ;
+    }
+
 }
