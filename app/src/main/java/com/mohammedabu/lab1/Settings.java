@@ -36,6 +36,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         public int value ;
         private CardView currency;
         private CardView tipPercentage;
+        int intPercent = 10;
+
 
 
         @Override
@@ -61,6 +63,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             switch (view.getId()) {
                 case R.id.saveButton:
                     i = new Intent(this, MainActivity.class);
+                    i.putExtra ( "IP", intPercent);
                     startActivity(i);
                     break;
                 case R.id.currencyButton:
@@ -83,39 +86,42 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
 
         public void showDialog(){
-
+            //final int progress = getResources().getInteger(R.integer.tipPercentage) ;
             final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
             final SeekBar seek = new SeekBar(this);
             seek.setMax(100);
             seek.setMin(10);
+            seek.setProgress(intPercent);
             seek.incrementProgressBy(5);
 
             popDialog.setTitle("Tip Percentage");
-            popDialog.setMessage("10%");
+            popDialog.setMessage(intPercent + "%");
             popDialog.setView(seek);
             popDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText(getApplicationContext(), "Tip % has been updated to: "+ seek.getProgress(), Toast.LENGTH_SHORT).show();
+                    intPercent = seek.getProgress();
                 }
             });
             final AlertDialog dialog = popDialog.create();
 
 
             seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                public int progress ;
+
 
                 public void onProgressChanged(SeekBar seekBar, int progressV, boolean fromUser) {
                     dialog.setMessage(progressV+" %");
                 }
 
                 public void onStartTrackingTouch(SeekBar arg0) {
+                    dialog.setMessage(intPercent+" %");
                 }
 
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     dialog.setMessage(seekBar.getProgress() +" %");
-                    progress = seekBar.getProgress();
+                    //progress = sseekBar.getProgress();
+                    intPercent = seekBar.getProgress();
 
                 }
             });

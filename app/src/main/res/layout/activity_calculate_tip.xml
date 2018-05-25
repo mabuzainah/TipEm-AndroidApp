@@ -61,9 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:digits="0123456789."
-                    android:hint="Bill Amount ($)"
-                    android:inputType="numberDecimal"
-                    android:textAlignment="center" />
+                    android:hint="Bill Amount"
+                    android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
         </android.support.v7.widget.CardView>
 

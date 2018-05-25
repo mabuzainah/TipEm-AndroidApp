@@ -39,12 +39,20 @@ public class CalculateTip extends AppCompatActivity {
     float paymentPerPerson;
     float people;
 
+    int tip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_tip);
         billText = findViewById(R.id.billAmount);
+
+
+        Intent i = getIntent();
+        tip = i.getIntExtra("IP", 10);
+
+
         billText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,6 +81,7 @@ public class CalculateTip extends AppCompatActivity {
             }
         });
         tipText = findViewById(R.id.tipAmount);
+        tipText.setText(String.valueOf(tip));
         tipText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

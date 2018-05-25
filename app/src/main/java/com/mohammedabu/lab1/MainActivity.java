@@ -21,11 +21,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView previousTip;
     private CardView suggestedTip;
     private CardView settings;
+    int tipPercent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent i = getIntent();
+        tipPercent = i.getIntExtra ( "IP", 0);
         calcTip = findViewById(R.id.calcTip);
         previousTip = findViewById(R.id.prevTip);
         suggestedTip = findViewById(R.id.suggested);
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.calcTip:
                 i= new Intent(this,CalculateTip.class);
+                i.putExtra ( "IP", tipPercent);
                 startActivity(i);
                 //showDialogView(view);
                 break;
