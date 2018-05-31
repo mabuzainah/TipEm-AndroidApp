@@ -92,7 +92,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             seek.setMax(100);
             seek.setMin(10);
             seek.setProgress(intPercent);
-            seek.incrementProgressBy(5);
+            //seek.incrementProgressBy(5);
 
             popDialog.setTitle("Tip Percentage");
             popDialog.setMessage(intPercent + "%");

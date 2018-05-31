@@ -38,6 +38,9 @@ public class CalculateTip extends AppCompatActivity {
     float tipPerPerson;
     float paymentPerPerson;
     float people;
+    boolean validBill;
+    boolean validTip;
+    boolean validPeople;
 
     int tip;
 
@@ -65,13 +68,15 @@ public class CalculateTip extends AppCompatActivity {
                 boolean valid = true;
                 if (working.isEmpty()){
                     valid = false;
-                } else {valid = true;}
+                } else if(Integer.parseInt(working) > 500 || Integer.parseInt(working) < 0 ) {
+                    valid = false;
+                }
                 if (!valid){
-                    billText.setError("Please input an amount that's reasonable");
-                    validForm = false;
+                    billText.setError("Please input a bill amount between 1 - 500");
+                    validBill = false;
                 } else {
                     billText.setError(null);
-                    validForm = true;
+                    validBill = true;
                 }
             }
 
@@ -99,10 +104,10 @@ public class CalculateTip extends AppCompatActivity {
                 }
                 if (!valid){
                     tipText.setError("Please input a percentage between 0 --> 100");
-                    validForm = false;
+                    validTip = false;
                 } else {
                     tipText.setError(null);
-                    validForm = true;
+                    validTip = true;
                 }
             }
 
@@ -129,10 +134,10 @@ public class CalculateTip extends AppCompatActivity {
                 }
                 if (!valid){
                     peopleText.setError("Please input a number between 1 --> 9");
-                    validForm = false;
+                    validPeople = false;
                 } else {
                     peopleText.setError(null);
-                    validForm = true;
+                    validPeople = true;
                 }
             }
 
@@ -148,13 +153,22 @@ public class CalculateTip extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 initialise();
-                if (!validForm){
-                    Toast.makeText(CalculateTip.this,"Missing or invalid information", Toast.LENGTH_SHORT).show();
+                if (!valid()){
+                    submit.setEnabled(false);
+                    Toast.makeText(CalculateTip.this,"Make sure the form is filled out properly!", Toast.LENGTH_SHORT).show();
+
                 }else{
-                navigateToCalculate();
+                    submit.setEnabled(true);
+                    navigateToCalculate();
+
                 }
             }
         });
+    }
+
+    public boolean valid(){
+        validForm = validPeople && validBill && validPeople;
+        return validForm;
     }
 
     public void navigateToCalculate(){
